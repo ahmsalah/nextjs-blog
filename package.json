@@ -5,7 +5,11 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,css,scss,html}\"",
+    "lint": "eslint \"src/**/*.{js,jsx}\"",
+    "lint:fix": "eslint --fix \"src/**/*.{js,jsx}\"",
+    "fix": "yarn format && yarn lint:fix"
   },
   "dependencies": {
     "@emotion/react": "^11.1.5",
@@ -18,5 +22,8 @@
     "react": "17.0.1",
     "react-dom": "17.0.1",
     "yarn": "^1.22.10"
+  },
+  "devDependencies": {
+    "prettier": "^2.2.1"
   }
 }
