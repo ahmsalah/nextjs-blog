@@ -23,15 +23,12 @@ const theme = createMuiTheme({
       main: red.A400,
     },
     background: {
-      default: '#fff',
+      default: 'rgb(232, 232, 232)',
     },
   },
   overrides: {
     MuiCssBaseline: {
       '@global': {
-        body: {
-          backgroundColor: 'rgb(232, 232, 232)',
-        },
         a: {
           color: 'inherit',
           textDecoration: 'none',
