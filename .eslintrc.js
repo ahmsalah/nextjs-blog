@@ -23,7 +23,6 @@ module.exports = {
     'plugin:react/recommended', // Uses the recommended rules from @eslint-plugin-react
     'plugin:prettier/recommended', // Enables eslint-plugin-prettier and eslint-config-prettier. This will display prettier errors as ESLint errors. Make sure this is always the last configuration in the extends array.
     'plugin:sonarjs/recommended',
-    'plugin:unicorn/recommended',
     'plugin:security/recommended',
     'plugin:react-hooks/recommended',
   ],
@@ -31,7 +30,6 @@ module.exports = {
     'no-console': 'error',
     'react/react-in-jsx-scope': 'off',
     'react/prop-types': 'off',
-    'simple-import-sort/sort': 'error',
-    'unicorn/filename-case': 'off',
+    'simple-import-sort/imports': 'error',
   },
 };
