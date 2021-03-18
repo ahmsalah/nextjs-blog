@@ -24,7 +24,7 @@ function PostItem({ title, body, id, divider }) {
       <div>
         <Collapse in={!isEditing}>
           <ListItem divider={divider}>
-            <Link href={`/posts/${id}`} passHref>
+            <Link href={`/post/${id}`} passHref>
               <ListItemText primary={title} secondary={body} sx={{ cursor: 'pointer' }} />
             </Link>
             <IconButton
