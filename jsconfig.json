@@ -9,7 +9,9 @@
       "@/components": ["components"],
       "@/components/*": ["components/*"],
       "@/containers": ["containers"],
-      "@/containers/*": ["containers/*"]
+      "@/containers/*": ["containers/*"],
+      "@/config": ["config"],
+      "@/config/*": ["config/*"]
     }
   }
 }
