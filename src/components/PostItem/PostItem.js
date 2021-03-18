@@ -7,6 +7,7 @@ import PropTypes from 'prop-types';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
+import Link from 'next/link';
 // import PostForm from '../PostForm/PostForm';
 
 function PostItem({ title, body, id, divider }) {
@@ -23,12 +24,9 @@ function PostItem({ title, body, id, divider }) {
       <div>
         <Collapse in={!isEditing}>
           <ListItem divider={divider}>
-            <ListItemText
-              // onClick={() => go to (`/posts/${id}`)}
-              primary={title}
-              secondary={body}
-              sx={{ cursor: 'pointer' }}
-            />
+            <Link href={`/posts/${id}`} passHref>
+              <ListItemText primary={title} secondary={body} sx={{ cursor: 'pointer' }} />
+            </Link>
             <IconButton
               disabled={deleteDisabled}
               onClick={handleDelete}
