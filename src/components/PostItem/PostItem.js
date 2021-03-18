@@ -1,5 +1,4 @@
 import Collapse from '@material-ui/core/Collapse';
-import Grow from '@material-ui/core/Grow';
 import IconButton from '@material-ui/core/IconButton';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -10,37 +9,25 @@ import PropTypes from 'prop-types';
 import React, { memo, useState } from 'react';
 // import PostForm from '../PostForm/PostForm';
 
-function PostItem({ title, body, id, divider }) {
-  const [deleteDisabled, setDeleteDisabled] = useState(false);
+function PostItem({ title, body, id, divider, handleDelete }) {
   const [isEditing, setIsEditing] = useState(false);
 
-  const handleDelete = () => {
-    // Delete Post By ID
-    setDeleteDisabled(true);
-  };
-
   return (
-    <Grow in={!!title} timeout={800}>
-      <div>
-        <Collapse in={!isEditing}>
-          <ListItem divider={divider}>
-            <Link href={`/post/${id}`} passHref>
-              <ListItemText primary={title} secondary={body} sx={{ cursor: 'pointer' }} />
-            </Link>
-            <IconButton
-              disabled={deleteDisabled}
-              onClick={handleDelete}
-              edge="end"
-              aria-label="delete"
-            >
-              <DeleteIcon />
-            </IconButton>
-            <IconButton onClick={() => setIsEditing(true)} edge="end" aria-label="edit">
-              <EditIcon />
-            </IconButton>
-          </ListItem>
-        </Collapse>
-        {/* <Collapse in={isEditing}>
+    <div>
+      <Collapse in={!isEditing}>
+        <ListItem divider={divider}>
+          <Link href={`/post/${id}`} passHref>
+            <ListItemText primary={title} secondary={body} sx={{ cursor: 'pointer' }} />
+          </Link>
+          <IconButton onClick={() => handleDelete(id)} edge="end" aria-label="delete">
+            <DeleteIcon />
+          </IconButton>
+          <IconButton onClick={() => setIsEditing(true)} edge="end" aria-label="edit">
+            <EditIcon />
+          </IconButton>
+        </ListItem>
+      </Collapse>
+      {/* <Collapse in={isEditing}>
           <ListItem sx={{ p: 0 }}>
             <PostForm
               editForm
@@ -51,8 +38,7 @@ function PostItem({ title, body, id, divider }) {
             />
           </ListItem>
         </Collapse> */}
-      </div>
-    </Grow>
+    </div>
   );
 }
 
