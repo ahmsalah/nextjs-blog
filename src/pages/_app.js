@@ -6,6 +6,8 @@ import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 
+import { CustomSnackbarProvider } from '@/utils/snackbar';
+
 import theme from '../theme';
 
 export default function MyApp({ Component, pageProps }) {
@@ -41,14 +43,16 @@ export default function MyApp({ Component, pageProps }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <ThemeProvider theme={theme}>
-        <CssBaseline />
-        {pageLoading ? (
-          <Box sx={{ textAlign: 'center' }}>
-            <Box component="h1">Loading...</Box>
-          </Box>
-        ) : (
-          <Component {...pageProps} />
-        )}
+        <CustomSnackbarProvider>
+          <CssBaseline />
+          {pageLoading ? (
+            <Box sx={{ textAlign: 'center' }}>
+              <Box component="h1">Loading...</Box>
+            </Box>
+          ) : (
+            <Component {...pageProps} />
+          )}
+        </CustomSnackbarProvider>
       </ThemeProvider>
     </>
   );
