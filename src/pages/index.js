@@ -1,11 +1,12 @@
-import Posts from '@/containers/Posts/Posts';
 import axios from 'axios';
+
+import Posts from '@/containers/Posts/Posts';
 
 export default function Home(props) {
   return <Posts {...props} />;
 }
 
-export async function getStaticProps(context) {
+export async function getStaticProps() {
   const postsPerPage = 9;
   const page = 1;
   const { data: list } = await axios.get(

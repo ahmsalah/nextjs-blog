@@ -1,7 +1,8 @@
-import Layout from '@/components/Layout/Layout';
-import PostItem from '@/components/PostItem/PostItem';
 import List from '@material-ui/core/List';
 import Paper from '@material-ui/core/Paper';
+
+import Layout from '@/components/Layout/Layout';
+import PostItem from '@/components/PostItem/PostItem';
 
 export default function Posts({ list }) {
   return (

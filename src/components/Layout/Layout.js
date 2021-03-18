@@ -1,5 +1,5 @@
-import React, { memo } from 'react';
 import Box from '@material-ui/core/Box';
+import React, { memo } from 'react';
 
 function Layout({ children }) {
   return (
