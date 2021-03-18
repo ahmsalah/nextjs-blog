@@ -11,7 +11,9 @@
       "@/containers": ["containers"],
       "@/containers/*": ["containers/*"],
       "@/config": ["config"],
-      "@/config/*": ["config/*"]
+      "@/config/*": ["config/*"],
+      "@/utils": ["utils"],
+      "@/utils/*": ["utils/*"]
     }
   }
 }
