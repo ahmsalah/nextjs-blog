@@ -13,7 +13,9 @@
       "@/config": ["config"],
       "@/config/*": ["config/*"],
       "@/utils": ["utils"],
-      "@/utils/*": ["utils/*"]
+      "@/utils/*": ["utils/*"],
+      "@/endpoints": ["endpoints"],
+      "@/endpoints/*": ["endpoints/*"]
     }
   }
 }
