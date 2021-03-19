@@ -1,10 +1,10 @@
 import axios from 'axios';
 
-const API = axios.create({
+const instance = axios.create({
   baseURL: process.env.NEXT_PUBLIC_API_BASEURL,
 });
 
-API.interceptors.response.use(
+instance.interceptors.response.use(
   response => response,
   error => {
     console.log(error);
@@ -12,4 +12,4 @@ API.interceptors.response.use(
   },
 );
 
-export default API;
+export default instance;
