@@ -1,6 +1,6 @@
-import API from '@/config/axios';
 import { postsPerPage } from '@/config/constants';
 import Posts from '@/containers/Posts/Posts';
+import API from '@/endpoints';
 
 export default function Home(props) {
   return <Posts {...props} />;
@@ -12,7 +12,7 @@ export async function getServerSideProps({ params: { page } }) {
   const {
     data: list,
     headers: { ['x-total-count']: count },
-  } = await API.get(`/posts?_sort=id&_order=desc&_page=${page}&_limit=${postsPerPage}`);
+  } = await API.fetchAllPosts({ page, postsPerPage });
   const pagesCount = getPagesCount(count);
 
   return {

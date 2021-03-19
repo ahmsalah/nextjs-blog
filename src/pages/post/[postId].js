@@ -1,15 +1,13 @@
-import API from '@/config/axios';
 import { postsPerPage } from '@/config/constants';
 import Post from '@/containers/Post/Post';
+import API from '@/endpoints';
 
 export default function PostPage(props) {
   return <Post {...props} />;
 }
 
 export async function getStaticPaths() {
-  const { data: posts } = await API.get(
-    `/posts?_sort=id&_order=desc&_page=1&_limit=${postsPerPage}`,
-  );
+  const { data: posts } = await API.fetchAllPosts({ page: 1, postsPerPage });
   const paths = posts.map(post => ({
     params: { postId: `${post.id}` },
   }));
@@ -21,7 +19,7 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params: { postId } }) {
-  const { data } = await API.get(`/posts/${postId}`);
+  const { data } = await API.fetchPost(postId);
 
   return {
     props: data, // will be passed to the page component as props

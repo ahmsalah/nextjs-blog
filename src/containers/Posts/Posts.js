@@ -8,7 +8,7 @@ import { TransitionGroup } from 'react-transition-group';
 
 import Layout from '@/components/Layout/Layout';
 import PostItem from '@/components/PostItem/PostItem';
-import API from '@/config/axios';
+import API from '@/endpoints';
 import snackbar from '@/utils/snackbar';
 
 export default function Posts({ list, pagesCount, page }) {
@@ -27,7 +27,7 @@ export default function Posts({ list, pagesCount, page }) {
   const handleDelete = async id => {
     try {
       setPosts(st => st.filter(post => post.id !== id));
-      await API.delete(`/posts/${id}`);
+      await API.deletePost(id);
       snackbar.toast('Post Deleted');
     } catch (error) {
       snackbar.error('Oops! Something went wrong, please try again.');
