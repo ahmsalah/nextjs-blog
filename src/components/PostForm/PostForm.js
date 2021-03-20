@@ -23,7 +23,7 @@ function PostForm({ editPostTitle, editPostBody, editPostId, setIsEditing, addPo
   const reset = () => {
     if (isEdit) setIsEditing(false);
     setFocused(false);
-    setFields(initialFields);
+    if (!isEdit) setFields(initialFields);
     setValidation({
       title: '',
       body: '',
