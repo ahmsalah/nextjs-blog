@@ -73,8 +73,6 @@ function PostForm({ editPostTitle, editPostBody, editPostId, setIsEditing, addPo
           id="post-title"
           name="title"
           label={isEdit ? 'Edit a post' : 'Start a post'}
-          multiline
-          maxRows="2"
           value={title}
           onChange={handleChange}
           onFocus={() => setFocused(true)}
