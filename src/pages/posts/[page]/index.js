@@ -13,6 +13,14 @@ export async function getServerSideProps({ params: { page } }) {
     data: list,
     headers: { ['x-total-count']: count },
   } = await API.fetchAllPosts({ page, postsPerPage });
+  if (list.length === 0) {
+    return {
+      redirect: {
+        destination: '/posts/1',
+        permanent: false,
+      },
+    };
+  }
   const pagesCount = getPagesCount(count);
 
   return {
