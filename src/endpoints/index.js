@@ -10,6 +10,9 @@ export const fetchAllPosts = ({ page, postsPerPage }) =>
 // Fetch a Post
 export const fetchPost = id => instance.get(`/posts/${id}`);
 
-const API = { deletePost, fetchAllPosts, fetchPost };
+// Add Post
+export const addPost = newPost => instance.post('/posts', newPost);
+
+const API = { deletePost, fetchAllPosts, fetchPost, addPost };
 
 export default API;
