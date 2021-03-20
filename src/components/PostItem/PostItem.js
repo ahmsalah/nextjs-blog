@@ -7,9 +7,10 @@ import EditIcon from '@material-ui/icons/Edit';
 import Link from 'next/link';
 import PropTypes from 'prop-types';
 import React, { memo, useState } from 'react';
-// import PostForm from '../PostForm/PostForm';
 
-function PostItem({ title, body, id, divider, handleDelete }) {
+import PostForm from '../PostForm/PostForm';
+
+function PostItem({ title, body, id, divider, deletePost, editPost }) {
   const [isEditing, setIsEditing] = useState(false);
 
   return (
@@ -19,7 +20,7 @@ function PostItem({ title, body, id, divider, handleDelete }) {
           <Link href={`/post/${id}`} passHref>
             <ListItemText primary={title} secondary={body} sx={{ cursor: 'pointer' }} />
           </Link>
-          <IconButton onClick={() => handleDelete(id)} edge="end" aria-label="delete">
+          <IconButton onClick={() => deletePost(id)} edge="end" aria-label="delete">
             <DeleteIcon />
           </IconButton>
           <IconButton onClick={() => setIsEditing(true)} edge="end" aria-label="edit">
@@ -27,17 +28,17 @@ function PostItem({ title, body, id, divider, handleDelete }) {
           </IconButton>
         </ListItem>
       </Collapse>
-      {/* <Collapse in={isEditing}>
-          <ListItem sx={{ p: 0 }}>
-            <PostForm
-              editForm
-              editPostId={id}
-              editPostTitle={title}
-              editPostBody={body}
-              setIsEditing={setIsEditing}
-            />
-          </ListItem>
-        </Collapse> */}
+      <Collapse in={isEditing}>
+        <ListItem sx={{ p: 0 }}>
+          <PostForm
+            editPostId={id}
+            editPostTitle={title}
+            editPostBody={body}
+            setIsEditing={setIsEditing}
+            editPost={editPost}
+          />
+        </ListItem>
+      </Collapse>
     </div>
   );
 }

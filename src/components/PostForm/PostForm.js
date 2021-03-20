@@ -4,7 +4,7 @@ import Collapse from '@material-ui/core/Collapse';
 import TextField from '@material-ui/core/TextField';
 import React, { memo, useState } from 'react';
 
-function PostForm({ editPostTitle, editPostBody, editPostId, setIsEditing }) {
+function PostForm({ editPostTitle, editPostBody, editPostId, setIsEditing, addPost, editPost }) {
   const isEdit = !!editPostId;
   const initialFields = {
     title: editPostTitle || '',
@@ -30,30 +30,27 @@ function PostForm({ editPostTitle, editPostBody, editPostId, setIsEditing }) {
     });
   };
 
-  const handleSubmit = async evt => {
-    evt.preventDefault();
-    try {
-      if (isEdit) {
-        // editPost({ id: editPostId, title, body });
-        setIsEditing(false);
-        return;
-      }
-      // addPost({ title, body });
-      setFields(initialFields);
-    } catch (error) {
-      console.log(error);
-    }
+  const handleSubmit = event => {
+    event.preventDefault();
+    isEdit ? editPost(editPostId, fields) : addPost(fields);
     reset();
   };
+
+  const handleCancel = event => {
+    event.preventDefault();
+    reset();
+  };
+
   const validate = (name, value) => {
     setValidation(state => ({ ...state, [name]: !value.length ? 'Incorrect entry.' : '' }));
   };
 
-  const handleChange = evt => {
-    const { name, value } = evt.target;
+  const handleChange = event => {
+    const { name, value } = event.target;
     setFields(state => ({ ...state, [name]: value }));
     validate(name, value);
   };
+
   const handleBlur = event => {
     const { name, value } = event.target;
     if (!title.length && !body.length) {
@@ -113,15 +110,10 @@ function PostForm({ editPostTitle, editPostBody, editPostId, setIsEditing }) {
           />
         </div>
         <Box sx={{ display: 'flex', justifyContent: 'center' }}>
-          <Button onClick={reset} sx={{ mr: 2 }}>
+          <Button onClick={handleCancel} sx={{ mr: 2 }}>
             Cancel
           </Button>
-          <Button
-            disabled={!title.length || !body.length}
-            type="submit"
-            value="Submit"
-            variant="contained"
-          >
+          <Button disabled={!title.length || !body.length} type="submit" variant="contained">
             {isEdit ? 'Edit Post' : 'Add Post'}
           </Button>
         </Box>
