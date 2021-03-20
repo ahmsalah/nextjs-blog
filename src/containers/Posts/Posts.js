@@ -27,16 +27,19 @@ export default function Posts({ list, pagesCount, page }) {
   };
 
   const deletePost = async id => {
+    const oldPosts = [...posts];
     try {
       setPosts(st => st.filter(post => post.id !== id));
       await API.deletePost(id);
       snackbar.toast('Post Deleted');
     } catch (error) {
+      setPosts(oldPosts);
       snackbar.error(snackbarErrorMsg);
     }
   };
 
   const addPost = async fields => {
+    const oldPosts = [...posts];
     try {
       const newPost = {
         userId: 1,
@@ -47,16 +50,19 @@ export default function Posts({ list, pagesCount, page }) {
       await API.addPost(newPost);
       snackbar.toast('New Post Added');
     } catch (error) {
+      setPosts(oldPosts);
       snackbar.error(snackbarErrorMsg);
     }
   };
 
   const editPost = async (id, fields) => {
+    const oldPosts = [...posts];
     try {
       setPosts(st => st.map(post => (post.id === id ? { ...post, ...fields } : post)));
       await API.editPost(id, fields);
       snackbar.toast('Post Updated');
     } catch (error) {
+      setPosts(oldPosts);
       snackbar.error(snackbarErrorMsg);
     }
   };
