@@ -20,7 +20,14 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params: { postId } }) {
   const { data } = await API.fetchPost(postId);
-
+  if (!data?.id) {
+    return {
+      redirect: {
+        destination: '/posts/1',
+        permanent: true,
+      },
+    };
+  }
   return {
     props: data, // will be passed to the page component as props
     // Next.js will attempt to re-generate the page:

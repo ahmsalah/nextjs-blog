@@ -17,7 +17,7 @@ export async function getServerSideProps({ params: { page } }) {
     return {
       redirect: {
         destination: '/posts/1',
-        permanent: false,
+        permanent: true,
       },
     };
   }
